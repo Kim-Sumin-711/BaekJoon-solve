@@ -1,13 +1,19 @@
 #include<iostream>
 #include<string>
-#include<cmath>
+
 int get_hash(const int& len, const std::string& str) {
-	int r = 31, M = 1234567891;
-	long int sum=0;
-	for (int i = 0; i < len ; i++) {
-		sum += ((int)str[i] - 96) * (long int)std::pow(r, i);
+	long int tmp;
+	long int res=0;
+	for (int i = 0; i < str.size(); i++) {
+		tmp = (int)str[i] - 96;
+		for (int j = i; j > 0; j--) {
+			tmp *= 31;
+			tmp %= 1234567891;
+		}
+		res += tmp;
+		res %= 1234567891;
 	}
-	return sum % M;
+	return res;
 }
 
 int main(void) {
