@@ -1,2 +1,1 @@
-text = input()
-print(ord(text)-44031)
+print(ord(input())-44031)
