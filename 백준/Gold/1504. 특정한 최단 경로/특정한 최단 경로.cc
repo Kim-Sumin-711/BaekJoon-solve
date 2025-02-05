@@ -13,9 +13,7 @@ void setup_map(MAP& map, int line_cnt,const int& node_cnt) {
 		map[start].push_back(std::make_pair(goal, cost));
 		map[goal].push_back(std::make_pair(start, cost));
 	}
-	for (int i = 1; i < node_cnt + 1; i++) {
-		std::sort(map[i].begin(), map[i].end(), [](const std::pair<int, int>& a, const std::pair<int, int>& b) {return a < b; });
-	}
+
 }
 
 int find_node_num_has_min_cost(const std::vector<int>& costs, const std::vector<bool>& visit)  {
