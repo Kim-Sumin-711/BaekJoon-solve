@@ -44,7 +44,6 @@ void sol_Nqueen(std::vector<Queen>& queens, int r, int N, int now_queen_cnt=0) {
 				else {
 					queens[now_queen_cnt] = Queen(r, col);
 					sol_Nqueen(queens, r + 1, N, now_queen_cnt + 1);
-					queens[now_queen_cnt] = Queen(-1, -1);
 				}
 			}
 		}
