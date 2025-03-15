@@ -11,17 +11,17 @@ public:
 		this->row = r;
 		this->col = c;
 	}
-	int get_row(void) {
+	int get_row(void) const {
 		return this->row;
 	}
-	int get_col(void) {
+	int get_col(void) const {
 		return this->col;
 	}
 };
 
 bool is_attacked(const std::vector<Queen>& queens, int row, int col,int queen_cnt) {
 	for (int i = 0; i < queen_cnt;i++) {
-		Queen queen = queens[i];
+		const Queen& queen = queens[i];
 		if (queen.get_row() == row || queen.get_col() == col)
 			return true;
 		else if (std::abs(queen.get_row() - row) == std::abs(queen.get_col() - col))
