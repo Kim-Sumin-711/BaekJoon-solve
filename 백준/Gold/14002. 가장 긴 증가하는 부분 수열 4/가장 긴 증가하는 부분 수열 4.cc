@@ -21,7 +21,7 @@ int get_position(const std::vector<int>& dp, int target) {
 
 }
 
-void Print_LCS_and_len(int len, const std::vector<int>& vec) {
+void Print_LIS_and_len(int len, const std::vector<int>& vec) {
 	std::vector<int>dp(1,vec[0]);
 	std::vector<int>log(len,-1);
 	log[0] = 0;
@@ -68,6 +68,6 @@ int main(void) {
 	for (auto iter = num_series.begin(); iter != num_series.end(); iter++) {
 		std::cin >> *iter;
 	}
-	Print_LCS_and_len(len, num_series);
+	Print_LIS_and_len(len, num_series);
 	return 0;
 }
