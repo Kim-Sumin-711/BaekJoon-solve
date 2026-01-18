@@ -1,24 +1,16 @@
 #include<iostream>
 #include<vector>
-bool is_it_Palindrome(const std::vector<int>& num_vec, int start, int end) {
-	bool Palindrome = true;
-	int loop = (end - start + 1) / 2;
-	while (loop--) {
-		if (num_vec[start] != num_vec[end]) {
-			Palindrome = false;
-			break;
-		}
-		start++; end--;
-	}
-	return Palindrome;
-}
-
 //i>j 사용안함.
 void set_dp(std::vector<std::vector<bool>>& dp, const std::vector<int>& num_vec) {
-	for (int i = 0; i < dp.size(); i++) {
-		for (int j = i; j < dp.size(); j++) {
-			if (i == j) dp[i][j] = 1;
-			else dp[i][j] = is_it_Palindrome(num_vec,i,j);
+	for (int i = 0; i < num_vec.size(); i++) {
+		dp[i][i] = true;
+	}
+	for (int i = 0; i < num_vec.size() - 1; i++) {
+		if (num_vec[i] == num_vec[i + 1]) dp[i][i + 1] = true;
+	}
+	for (int i = num_vec.size() - 2; i > -1; i--) {
+		for (int j = i + 1; j < num_vec.size(); j++) {
+			if (dp[i + 1][j - 1] && num_vec[i] == num_vec[j]) dp[i][j] = true;
 		}
 	}
 }
@@ -37,9 +29,9 @@ int main(void) {
 	std::cin >> num_cnt;
 	std::vector<int> num_vec(num_cnt);
 	for (int i = 0; i < num_cnt; i++) {
-		std::cin >> num_vec[i];
+		std::cin >> num_vec[i]; 
 	}
-	std::vector<std::vector<bool>> dp(num_cnt, std::vector<bool>(num_cnt));
+	std::vector<std::vector<bool>> dp(num_cnt, std::vector<bool>(num_cnt,false));
 	set_dp(dp, num_vec);
 	std::cin >> question_cnt;
 	int start, end;
