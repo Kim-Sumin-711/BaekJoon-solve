@@ -46,6 +46,7 @@ int main(void) {
 	std::vector<int> cards(player_cnt);
 	set_cards(cards);
 	std::unordered_map<int, int> score_map;
+	score_map.reserve(player_cnt * 2);
 	for (int p = 0; p < player_cnt; p++) {
 		score_map.insert({ cards[p],0});
 	}
