@@ -33,6 +33,7 @@ int main(void) {
 	}
 	long long ans = 0;
 	std::unordered_map<int, int> vec1_sums_map;
+	vec1_sums_map.reserve(1000000);
 	create_sums_map(vec1_sums_map, vec1);
 	
 	for (int elem : vec2) {
