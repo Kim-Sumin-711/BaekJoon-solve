@@ -7,7 +7,9 @@ void sol(const std::string& a, const std::string& b) {
 	for (int r = 1; r < a.size() + 1; r++) {
 		for (int c = 1; c < b.size() + 1; c++) {
 			if (a[r - 1] == b[c - 1]) 
-				LCS_len_dp[r][c] = std::max(std::max(LCS_len_dp[r - 1][c], LCS_len_dp[r][c - 1]), LCS_len_dp[r - 1][c - 1] + 1);
+				//위, 왼쪽 dp값이 왼쪽 대각선보다 작을 수가 없음.
+				//문자를 하나씩만 추가하니까...
+				LCS_len_dp[r][c] = LCS_len_dp[r - 1][c - 1] + 1;
 			
 			else 
 				LCS_len_dp[r][c] = std::max(LCS_len_dp[r - 1][c], LCS_len_dp[r][c - 1]);
@@ -21,15 +23,7 @@ void sol(const std::string& a, const std::string& b) {
 	while (r > 0 && c > 0) {
 		if (a[r - 1] == b[c - 1]) {
 			LCS.push_back(a[r - 1]);
-			if (LCS_len_dp[r - 1][c - 1] == LCS_len_dp[r][c] - 1 ) {
 				r--; c--;
-			}
-			else {
-				if (LCS_len_dp[r - 1][c] >= LCS_len_dp[r][c - 1])
-					r--;
-
-				else c--;
-			}
 		}
 		else {
 			if (LCS_len_dp[r - 1][c] >= LCS_len_dp[r][c - 1])
